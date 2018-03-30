@@ -3,6 +3,9 @@
 using namespace std;
 
 int main(){
-	cout << "Hello world!" << endl;
-	return 0 ;
+	char Hello[]="Bonjour";
+	//char*  greeting = Hello[0]; 
+	String mystr(Hello);
+	std::cout<< mystr.len() << std::endl;
+	return 0;
 }
