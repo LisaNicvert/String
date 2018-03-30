@@ -10,7 +10,10 @@ class String{
 		int capacity_; // The size of the string sequence allocated by user (>= len)
 	public:
 		~String(); // destructor
-		int capacity();
+		int capacity(); // returns capacity_
+		bool empty(); // returns true if the string is empty
+		void reserve(int newsize);
+	
 };
 // friend operator+(String,String);
 // friend operator+(String,char*);
