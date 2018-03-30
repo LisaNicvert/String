@@ -22,3 +22,11 @@ String::String(char word[])
 	strcpy (word,word_);
 
 }
+String::~String()
+{
+	// Add the delete [var] here when you make a new manual allocation in a function.
+}
+
+int String::capacity(){
+	return capacity_;
+}

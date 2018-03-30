@@ -13,6 +13,8 @@ class String{
 		String(char word[]);
 		int len();
 
+		~String(); // destructor
+		int capacity();
 };
 // friend operator+(String,String);
 // friend operator+(String,char*);
