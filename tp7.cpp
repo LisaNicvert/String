@@ -7,5 +7,7 @@ int main(){
 	//char*  greeting = Hello[0]; 
 	String mystr(Hello);
 	std::cout<< mystr.len() << std::endl;
+	std::cout<< mystr.word() << std::endl;
+
 	return 0;
 }

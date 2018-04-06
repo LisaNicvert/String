@@ -6,6 +6,14 @@ int String::len()
 {
 	return len_;
 } 
+int String::capacity(){
+	return capacity_;
+}
+char* String::word()
+{
+	return word_;
+}
+
 
 //Constructor
 String::String(char word[]) 
@@ -18,15 +26,20 @@ String::String(char word[])
 	}
 	len_ = i;
 	capacity_ = len_ + 1; // on compte \0
-	word_ = new char[len_ + 1];
-	strcpy (word,word_);
+	word_ = new char[len_];
 
+
+	for (i=0 ; i < capacity_ ; i++)
+	{
+		word_[i] = word[i];
+	}
+	word_[capacity_] = '\0';
+	//strcpy (word_,word);
+	
 }
 String::~String()
 {
 	// Add the delete [var] here when you make a new manual allocation in a function.
 }
 
-int String::capacity(){
-	return capacity_;
-}
+

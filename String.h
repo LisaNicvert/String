@@ -12,9 +12,11 @@ class String{
 		//Constructors
 		String(char word[]);
 		int len();
+		char* word();
 
 		~String(); // destructor
 		int capacity();
+		
 };
 // friend operator+(String,String);
 // friend operator+(String,char*);
