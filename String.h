@@ -20,11 +20,13 @@ class String{
 		void resize(int newlenght, char& c);
 		~String(); // destructor
 		int capacity();
-		
+
+		// Operator
+		String& operator=(char c);
 };
 // friend operator+(String,String);
 // friend operator+(String,char*);
 // friend operator=(String,String);
-// friend operator=(String,char*);
 
+	
 #endif

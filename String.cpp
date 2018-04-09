@@ -50,7 +50,7 @@ void String::resize(int newlenght, char& c )
 			newword[i] = word_[i];
 		}
 		newword [newlenght + 1 ] = '\0'; // dernière case 	
-		delete [] word_;
+		delete[] word_;
 		word_ = newword;
 		
 	}
@@ -69,7 +69,7 @@ void String::resize(int newlenght, char& c )
 		}
 		
 		newword [newlenght + 1 ] = '\0';
-		delete [] word_;
+		delete[] word_;
 		word_ = newword;
 	
 	}
@@ -77,7 +77,7 @@ void String::resize(int newlenght, char& c )
 	len_ = newlenght;
 	capacity_ = newlenght + 1;
 }
-
+// To do if newlength > Max sieze & paramètre optionnel ???
 String::~String()
 {
 
@@ -85,3 +85,12 @@ String::~String()
 }
 
 //void String::Resize(   , int n ) //  n taille voulue
+
+String& String::operator=(char c)
+{
+	delete[] word_;
+	this -> word_ = &c;
+	this -> len_ = 1;
+	this -> capacity_ = 2 ;
+	return *this;
+}

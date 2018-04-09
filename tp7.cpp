@@ -20,5 +20,13 @@ int main(){
 	std::cout<< mystr.len() << std::endl;
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
+
+	cout << "Test de l'opérateur=(char)"<<endl;
+	mystr = "A";
+	std::cout<< mystr.len() << std::endl;
+	std::cout<< mystr.word() << std::endl;
+	std::cout<< mystr.capacity() << std::endl;
+	cout << "Eh ça marche :)"<<endl;
+
 	return 0;
 }
