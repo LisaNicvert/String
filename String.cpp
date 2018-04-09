@@ -16,7 +16,7 @@ char* String::word()
 
 
 //Constructor
-String::String(char word[]) 
+String::String(const char word[]) 
 {
 	//p_word_ = word;
 	int i=0 ; 
@@ -42,4 +42,4 @@ String::~String()
 	// Add the delete [var] here when you make a new manual allocation in a function.
 }
 
-
+//void String::Resize(   , int n ) //  n taille voulue

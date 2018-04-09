@@ -10,7 +10,7 @@ class String{
 		int capacity_; // The size of the string sequence allocated by user (>= len)
 	public:
 		//Constructors
-		String(char word[]);
+		String(const char word[]);
 		int len();
 		char* word();
 

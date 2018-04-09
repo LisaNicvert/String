@@ -8,6 +8,7 @@ int main(){
 	String mystr(Hello);
 	std::cout<< mystr.len() << std::endl;
 	std::cout<< mystr.word() << std::endl;
+	std::cout<< mystr.capacity() << std::endl;
 
 	return 0;
 }
