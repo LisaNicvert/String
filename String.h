@@ -1,5 +1,7 @@
 # include <cstring>
 # include <iostream>
+#ifndef STRING_H
+#define STRING_H
 
 class String{
 	protected:
@@ -14,6 +16,8 @@ class String{
 		int len();
 		char* word();
 
+		// Methods
+		void resize(int newlenght, char& c);
 		~String(); // destructor
 		int capacity();
 		
@@ -22,3 +26,5 @@ class String{
 // friend operator+(String,char*);
 // friend operator=(String,String);
 // friend operator=(String,char*);
+
+#endif
