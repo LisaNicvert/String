@@ -17,15 +17,17 @@ class String{
 		char* word();
 
 		// Methods
-		void resize(int newlenght, char& c);
+		void resize(int newlenght, const char& c= 0);
+		void Testresize(int newlenght, const char& c =88 ) ;
 		~String(); // destructor
 		int capacity();
 
 		// Operator
 		String& operator=(char c);
+		friend String operator+(const char* lhs , const String& rhs);
 };
 // friend operator+(String,String);
-// friend operator+(String,char*);
+ //
 // friend operator=(String,String);
 
 	

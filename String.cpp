@@ -24,7 +24,7 @@ String::String(const char word[])
 	{
 		++i;
 	}
-	len_ = i;
+	len_ = i ; // Car on commence on prend en compte le bite = 0
 	capacity_ = len_ + 1; // on compte \0
 	word_ = new char[len_];
 
@@ -39,9 +39,9 @@ String::String(const char word[])
 }
 
 // Methods
-void String::resize(int newlenght, char& c )
+
+void String::resize(int newlenght, const char& c ) // A finir !!!!!
 {
-	std::cout << c << std::endl; // Ok pour a 
 	char *newword = new char [newlenght];
 	if (newlenght < len_)
 	{
@@ -56,15 +56,15 @@ void String::resize(int newlenght, char& c )
 	}
 	else if (newlenght > len_)
 	{
-		for (int i=0 ; i<newlenght ; ++i)
+		for (int i=0 ; i<=newlenght ; ++i)
 		{	
-			if (i <= len_)
+			if (i < len_)
 			{	
 			newword[i] = word_[i];
 			}
 			else
-			{
-				newword[i] = c;
+			{	
+			newword[i] = c;
 			}
 		}
 		
@@ -74,23 +74,49 @@ void String::resize(int newlenght, char& c )
 	
 	}
 	
-	len_ = newlenght;
+	len_ = newlenght  ;
 	capacity_ = newlenght + 1;
 }
 // To do if newlength > Max sieze & paramètre optionnel ???
 String::~String()
 {
 
-	// Add the delete [var] here when you make a new manual allocation in a function.
 }
 
 //void String::Resize(   , int n ) //  n taille voulue
 
 String& String::operator=(char c)
 {
-	delete[] word_;
+	delete[] this -> word_;
 	this -> word_ = &c;
 	this -> len_ = 1;
 	this -> capacity_ = 2 ;
 	return *this;
 }
+
+
+
+
+/*
+String String::operator+(const char* lhs , const String& rhs)
+{
+	int newlenght = this -> len_ + 1;
+	char *newword = new char [newlenght];
+
+	newword[newlenght] = lhs;	
+	for (int i=1 ; i<=  rhs.len_ ; ++i)
+	{
+		newword[i] = rhs.word_[i];
+	}
+	newword[newlenght + 1] = '\0';
+	delete[] word_;
+	this -> word_ = newword;
+	this -> len_ = newlenght;
+	this -> capacity_ = newlenght + 1;
+	return *this;
+}
+
+
+*/
+
+
