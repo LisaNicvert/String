@@ -12,11 +12,11 @@ class String{
 		//Constructors
 		String(char word[]);
 		int len();
-
 		~String(); // destructor
 		int capacity(); // returns capacity_
 		bool empty(); // returns true if the string is empty
 		void reserve(int newsize);
+        void display(); // displays the word, nothing if it is empty
 	
 };
 // friend operator+(String,String);

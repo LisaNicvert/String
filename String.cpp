@@ -20,7 +20,7 @@ String::String(char word[])
 	len_ = i;
 	capacity_ = len_ + 1; // on compte \0
 	word_ = new char[len_ + 1];
-	strcpy (word,word_);
+	strcpy (word_,word);
 
 }
 
@@ -65,6 +65,20 @@ void String::reserve(int newsize)
     else if(newsize==capacity_) // case capacity is the same
     {
         cout << "The size is already this one!" <<endl;
+    }
+}
+
+void String::display()
+{
+    int i=0;
+    while(word_[i] != '\0')
+    {
+        cout << word_[i];
+        ++i;
+    }
+    if(i != 0) // to avoid displaying newline if String is empty
+    {
+        cout << endl;
     }
 }
 
