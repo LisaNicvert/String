@@ -22,4 +22,7 @@ class String{
 // friend operator+(String,String);
 // friend operator+(String,char*);
 // friend operator=(String,String);
-// friend operator=(String,char*);
+
+//friend operator=(String,char*); // assign a new value to the String, changing its size (len_) and capacity_
+
+

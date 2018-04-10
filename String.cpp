@@ -1,5 +1,6 @@
 # include "String.h"
 int String::MAX_LEN_;
+using namespace std;
 
 // 
 int String::len()
@@ -22,10 +23,6 @@ String::String(char word[])
 	strcpy (word,word_);
 
 }
-String::~String()
-{
-	// Add the delete [var] here when you make a new manual allocation in a function.
-}
 
 int String::capacity(){
 	return capacity_;
@@ -42,6 +39,45 @@ bool String::empty(){
 	return res;
 }
 
-void String::reserve(int newsize){
-	if(newsize >=)
+void String::reserve(int newsize)
+{
+	if(newsize >capacity_) // Case capacity enhanced
+	{
+		char * temp = new char[newsize + 1]; // new capacity
+		for(int i=0 ; i<len_+1 ; i++){ // to copy the word
+			temp[i]=word_[i];
+		}
+		strcpy(word_,temp);
+        delete[] temp;
+		capacity_=newsize;
+    }
+    else if(newsize < capacity_) // case capacity diminushed
+    { 
+        // we choose to optimize capacity
+        char * temp = new char[this->len()+1]; // new capacity
+		for(int i=0 ; i<len_+1 ; i++){ // to copy the word
+			temp[i]=word_[i];
+		}
+        strcpy(word_,temp);
+        delete[] temp;
+        capacity_=this->len()+1;
+    }
+    else if(newsize==capacity_) // case capacity is the same
+    {
+        cout << "The size is already this one!" <<endl;
+    }
 }
+
+String::~String()
+{
+	// Add the delete [var] here when you make a new manual allocation in a function.
+	delete word_;
+}
+/*
+String& operator=(const char* c){
+    // if sizes are equal
+    // if String is longer
+    // if char is longer
+    
+}
+*/
