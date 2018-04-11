@@ -29,6 +29,7 @@ class String{
 		String& operator=(char c);
 		
 	  friend String operator+(const String& s, const char* c );
+	  friend String operator+(const char* c ,const String& s );
 };
 
 //String operator+(const String& s, const char* c )

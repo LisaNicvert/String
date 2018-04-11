@@ -47,13 +47,16 @@ int main(){
 	char c1[] = "Bien le ";
 	String s1(c1);
 	char c2[] = "bonjour !";
-	
+
 	String s;
 	s = s1 + c2;
 	cout << s.word()<<endl;
 	
+	cout << "Test de l'opérateur (char *)+ String"<<endl;
 
-	
+	String s_othersens;
+	s = c2 + s1;
+	cout << s.word()<<endl;
 	return 0;
 }
 
