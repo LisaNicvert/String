@@ -1,31 +1,48 @@
 # include <iostream>
 # include "String.h"
+#include <string>
 using namespace std;
 
 int main(){
     // Ctor test
 	char Hello[]="Bonjour";
-	//char*  greeting = Hello[0]; 
+	
+    /*------------------------
+    * Ctor test
+    ------------------------*/
+	cout << "Test de constructeur " <<endl;	
 	String mystr(Hello);
-    
-    /*
-	std::cout<< mystr.len() << std::endl;
-	std::cout<< mystr.word() << std::endl;
-	std::cout<< mystr.capacity() << std::endl;
-    mystr.display();
-    
+	std::cout<< "length de Bonjour "<<mystr.len() << std::endl;
+	std::cout<<"Mot en mémoire " << mystr.word() << std::endl;
+	std::cout<< "Cpacité = mémoire allouée  "<<mystr.capacity() << std::endl;
 	char plus = 'a';
-	mystr.resize(3, plus);
+
+    /*------------------------
+    * resize test
+    ------------------------*/
+	cout << "Test de resize argument plus court" <<endl;	
+	mystr.resize(3);
 	std::cout<< mystr.len() << std::endl;
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
 
 
-	mystr.resize(8 , plus);
+	cout << "Test de RESIZE  avec argulent c= +" <<endl;
+	mystr.resize(8, '+');
 	std::cout<< mystr.len() << std::endl;
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
 
+
+	cout << "Test de RESIZE  avec argulent c par défaut " <<endl;
+	mystr.resize(15);
+	std::cout<< mystr.len() << std::endl;
+	std::cout<< mystr.word() << std::endl;
+	std::cout<< mystr.capacity() << std::endl;
+
+    /*------------------------
+    * operator=(char) test
+    ------------------------*/
 	cout << "Test de l'opérateur=(char)"<<endl;
 	mystr = "A";
 	std::cout<< mystr.len() << std::endl;
@@ -33,15 +50,37 @@ int main(){
 	std::cout<< mystr.capacity() << std::endl;
 	cout << "Eh ça marche :)"<<endl;
 
+	/*------------------------
+    * operator+(char *) test
+    ------------------------*/
+	cout << "Test de l'opérateur+ (char *)"<<endl;
+	char c1[] = "Bien le ";
+	String s1(c1);
+	char c2[] = "bonjour !";
+
+	String s;
+	s = s1 + c2;
+	cout << s.word()<<endl;
+	
+	cout << "Test de l'opérateur (char *)+ String"<<endl;
+
+	String s_othersens;
+	s = c2 + s1;
+	cout << s.word()<<endl;
 	// len accessor test
     cout<< "mystr len :" << mystr.len() << endl;
     mystr.display();
 	
     
-	// Capacity accessor test
+    /*------------------------
+    * capacity getter test
+    ------------------------*/
 	cout<< "Capacity: " << mystr.capacity() << endl;
 	
-	// empty test
+	/*------------------------
+    * empty test
+    ------------------------*/
+    /*
 	cout<< "mystr is empty: " << mystr.empty() << endl;
 	char empty[]="";
 	String emptystr(empty);
@@ -164,3 +203,5 @@ int main(){
     
 	return 0;
 }
+
+
