@@ -43,27 +43,17 @@ int main(){
 	cout << "Eh ça marche :)"<<endl;
 
 	
-	string h = "hello";
-	cout << h.length() << endl;
-	cout << h.size() << endl;
-	cout << h.capacity() << endl; // Allocation non égale à la longueur du string
-	h.resize(8, '+');
-	cout << h << endl;
+	cout << "Test de l'opérateur+ (char *)"<<endl;
+	char c1[] = "Bien le ";
+	String s1(c1);
+	char c2[] = "bonjour !";
+	
+	String s;
+	s = s1 + c2;
+	cout << s.word()<<endl;
+	
 
-
-	char suite[] = "a";
- 	char* mynewword = new char [12];
-	for (int  i = 0 ;  i<= 12 ; ++i)
-	{
-		if (i <= 7){
-			mynewword[i] = Hello[i];
-		}
-		else {
-			mynewword[i] = suite[0];
-		}
-	}
-	cout << mynewword << endl;
-
+	
 	return 0;
 }
 

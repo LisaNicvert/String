@@ -14,7 +14,12 @@ char* String::word()
 	return word_;
 }
 
-
+String::String()
+{
+	len_=0;
+	capacity_=0;
+	word_=nullptr;
+}
 //Constructor
 String::String(const char word[]) 
 {
@@ -38,11 +43,12 @@ String::String(const char word[])
 	
 }
 
+
 // Methods
 
 void String::resize(int newlenght, const char& c ) // A finir !!!!!
 {
-	char *newword = new char [newlenght];
+	char *newword = new char [newlenght + 1];
 	if (newlenght < len_)
 	{
 		for (int i=0 ; i < newlenght ; ++i )
@@ -69,7 +75,7 @@ void String::resize(int newlenght, const char& c ) // A finir !!!!!
 		}
 		
 		newword [newlenght + 1 ] = '\0';
-		delete[] word_;
+		delete[]  word_;
 		word_ = newword;
 	
 	}
@@ -80,7 +86,7 @@ void String::resize(int newlenght, const char& c ) // A finir !!!!!
 // To do if newlength > Max sieze & paramètre optionnel ???
 String::~String()
 {
-
+	delete [] word_;
 }
 
 //void String::Resize(   , int n ) //  n taille voulue
@@ -94,29 +100,5 @@ String& String::operator=(char c)
 	return *this;
 }
 
-
-
-
-/*
-String String::operator+(const char* lhs , const String& rhs)
-{
-	int newlenght = this -> len_ + 1;
-	char *newword = new char [newlenght];
-
-	newword[newlenght] = lhs;	
-	for (int i=1 ; i<=  rhs.len_ ; ++i)
-	{
-		newword[i] = rhs.word_[i];
-	}
-	newword[newlenght + 1] = '\0';
-	delete[] word_;
-	this -> word_ = newword;
-	this -> len_ = newlenght;
-	this -> capacity_ = newlenght + 1;
-	return *this;
-}
-
-
-*/
 
 
