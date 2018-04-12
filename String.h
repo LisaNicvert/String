@@ -38,12 +38,10 @@ class String{
         String& operator=(const char* c); // sets the word to the content of specified char*
         // Output : pointer on the string + if too long, message "ERROR: PARAMETER OVERSTEPS MAXIMAL LEGAL LENGTH"
         // If char is shorter, capacity is resized
-		
-	  friend String operator+(const String& s, const char* c );
-	  friend String operator+(const char* c ,const String& s );
+		friend String operator+(const String& s, const char* c );
+        friend String operator+(const char* c ,const String& s );
+        friend String operator+(const String& lhs, const String& rhs);
+
 };
-// friend operator+(String,String);
- //
-// friend operator=(String,String);
-	
+
 #endif

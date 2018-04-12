@@ -10,16 +10,19 @@ int main(){
     /*------------------------
     * Ctor test
     ------------------------*/
+    /*
 	cout << "Test de constructeur " <<endl;	
 	String mystr(Hello);
 	std::cout<< "length de Bonjour "<<mystr.len() << std::endl;
 	std::cout<<"Mot en mémoire " << mystr.word() << std::endl;
 	std::cout<< "Cpacité = mémoire allouée  "<<mystr.capacity() << std::endl;
 	char plus = 'a';
-
+    */
+    
     /*------------------------
     * resize test
     ------------------------*/
+    /*
 	cout << "Test de resize argument plus court" <<endl;	
 	mystr.resize(3);
 	std::cout<< mystr.len() << std::endl;
@@ -39,20 +42,24 @@ int main(){
 	std::cout<< mystr.len() << std::endl;
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
-
+    */
+    
     /*------------------------
     * operator=(char) test
     ------------------------*/
+    /*
 	cout << "Test de l'opérateur=(char)"<<endl;
 	mystr = "A";
 	std::cout<< mystr.len() << std::endl;
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
 	cout << "Eh ça marche :)"<<endl;
-
+    */
+    
 	/*------------------------
     * operator+(char *) test
     ------------------------*/
+    /*
 	cout << "Test de l'opérateur+ (char *)"<<endl;
 	char c1[] = "Bien le ";
 	String s1(c1);
@@ -70,13 +77,15 @@ int main(){
 	// len accessor test
     cout<< "mystr len :" << mystr.len() << endl;
     mystr.display();
-	
+	*/
     
     /*------------------------
     * capacity getter test
     ------------------------*/
+    /*
 	cout<< "Capacity: " << mystr.capacity() << endl;
-	
+	*/
+    
 	/*------------------------
     * empty test
     ------------------------*/
@@ -92,24 +101,30 @@ int main(){
     * reserve test
     ------------------------*/
     /*
+    String mystr(Hello);
+    
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     
     // equal capacity
+    cout<< "equal capacity:" << endl;
     mystr.reserve(8);
     mystr.display();
+    cout<< "------------------------------------------" << endl;
     
-
     // greater capacity
+    cout<< "greater capacity:" << endl;
 	mystr.reserve(40);
 	cout<< "mystr capacity: " << mystr.capacity() << endl;
 	mystr.display();
-    
+    cout<< "------------------------------------------" << endl;
     
     // lesser capacity
+    cout<< "lesser capacity:" << endl;
 	mystr.reserve(2);
 	cout<< "mystr capacity: " << mystr.capacity() << endl;
     cout<< "mystr len: " << mystr.len() << endl;
     mystr.display();
+    cout<< "------------------------------------------" << endl;
     */
     
     /*------------------------
@@ -201,6 +216,34 @@ int main(){
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     */
     
+    /*------------------------
+    * operator+(string) test
+    ------------------------*/
+    /*
+    String mystr(Hello);
+    cout << mystr.word() << endl;    
+    cout<< "mystr len: " << mystr.len() << endl;
+    */
+    
+    // If new word is too long
+    /*
+    char secondChar[]="AFRdqgfdfbfdgnfegnhreghfsgdfgrgfhrefghngrezgfregfrghfezfghdfdfdqsfgdqfghfdghdqsfghydscvfghredqsfghredqsvfghrtedqsfghtedqscvb";
+    String rhs(secondChar);
+    String newstring=mystr+rhs;
+    cout<< newstring.word() << endl;
+    */
+    
+    // If newword is ok
+    /*
+    char secondChar[]=", ca va ?"; // problem il I use ç, it tells me rhs has length 10... (instead of 9)
+    String rhs(secondChar);
+    cout<< "rhs len: " << rhs.len() << endl;
+    String newstring=mystr+rhs;
+    cout<< newstring.word() << endl;
+    cout<< "newstring capacity: " << newstring.capacity() << endl;
+    cout<< "newstring len: " << newstring.len() << endl;
+    */
+
 	return 0;
 }
 
