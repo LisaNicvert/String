@@ -6,18 +6,21 @@ using namespace std;
 int main(){
     // Ctor test
 	char Hello[]="Bonjour";
+    cout << Hello[0] << endl;
 	
     /*------------------------
     * Ctor test
     ------------------------*/
-    /*
+    
 	cout << "Test de constructeur " <<endl;	
 	String mystr(Hello);
 	std::cout<< "length de Bonjour "<<mystr.len() << std::endl;
 	std::cout<<"Mot en mémoire " << mystr.word() << std::endl;
 	std::cout<< "Cpacité = mémoire allouée  "<<mystr.capacity() << std::endl;
-	char plus = 'a';
-    */
+    mystr.display();
+    mystr.~String();
+    
+
     
     /*------------------------
     * resize test
@@ -43,7 +46,6 @@ int main(){
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
     */
-    
     /*------------------------
     * operator=(char) test
     ------------------------*/
@@ -143,7 +145,7 @@ int main(){
     /*------------------------
     * Operator=(char *) tests
     ------------------------*/
-    /*
+    
     char secondChar[]="AFRESdt";
     // Equal capacity
     char* ptr= &secondChar[0];
@@ -153,7 +155,7 @@ int main(){
     cout<< mystr.word() << endl;
     cout<< "mystr display: "  << endl;
     mystr.display();
-    */
+    
     
     /*
     // String greater cap
@@ -168,11 +170,11 @@ int main(){
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     cout<< "mystr display after: "  << endl;
     mystr.display();
-    */
+    
     
     
     // String lesser cap
-    /*
+    
     char secondChar[]="AFRESdfdvqfdbdfbt";
     char* ptr= &secondChar[0];
     
