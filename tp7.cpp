@@ -6,21 +6,23 @@ using namespace std;
 int main(){
     // Ctor test
 	char Hello[]="Bonjour";
+   
     cout << Hello[0] << endl;
 	
     /*------------------------
     * Ctor test
     ------------------------*/
     
+
+    /*
 	cout << "Test de constructeur " <<endl;	
 	String mystr(Hello);
 	std::cout<< "length de Bonjour "<<mystr.len() << std::endl;
 	std::cout<<"Mot en mémoire " << mystr.word() << std::endl;
 	std::cout<< "Cpacité = mémoire allouée  "<<mystr.capacity() << std::endl;
     mystr.display();
-    mystr.~String();
-    
-
+    mystr.~String()
+    */ 
     
     /*------------------------
     * resize test
@@ -102,9 +104,9 @@ int main(){
 	/*------------------------
     * reserve test
     ------------------------*/
-    /*
-    String mystr(Hello);
     
+    String mystr(Hello);
+    /*
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     
     // equal capacity
@@ -127,8 +129,8 @@ int main(){
     cout<< "mystr len: " << mystr.len() << endl;
     mystr.display();
     cout<< "------------------------------------------" << endl;
-    */
     
+    */
     /*------------------------
     * Display tests
     ------------------------*/
@@ -139,14 +141,15 @@ int main(){
     char empty[]="";
 	String emptystr(empty);
     emptystr.display();
-    */
     
+    */
     
     /*------------------------
     * Operator=(char *) tests
     ------------------------*/
-    
+    /*
     char secondChar[]="AFRESdt";
+   
     // Equal capacity
     char* ptr= &secondChar[0];
     
@@ -156,8 +159,8 @@ int main(){
     cout<< "mystr display: "  << endl;
     mystr.display();
     
+    */
     
-    /*
     // String greater cap
     char secondChar[]="AFRESdt";
     mystr.reserve(40);
@@ -171,7 +174,7 @@ int main(){
     cout<< "mystr display after: "  << endl;
     mystr.display();
     
-    
+    /*
     
     // String lesser cap
     

@@ -80,19 +80,7 @@ char* String::word()
 // ####################################################################
 
 
-/* Resize :
-The method resize allows to users to redefine the size of a string pssing as arguement the new length of string. If the lenghth choosen 
-is infeiror to the string length the excedent characters are deleted otherwise memory is allocated. If any argument is passed to the 
-mathod null characters will be add until to reach the newlength, otherwise the charecter choosen is used.
-This method created a new array of size equal to the new capacity (new length + 1). The string is partially or fully copied according to the 
-new length choosen. Finally the array of char of the former size is deleted, and the new length and the new capacity are updated.
-Becareful if the new size exceeds the max size, a warning message warns user.  
 
-Pre-conditions : String of size define by its attribute len_ is modified
-Post-conditions : if newlength < len_ exceedent char are deleted,
-                  if  len_< newlength < max_size memory is allocated if any argument has been passed '\0' are added at the end of the string, otherwise
-                  the string is extended with the char choosen,
-                  if newlength > max_size any action is possible a warnning message appears.*/
 
 void String::resize(int newlength, const char& c ) 
 {
@@ -146,12 +134,7 @@ void String::resize(int newlength, const char& c )
 	capacity_ = newlength + 1;
 }
 
-/* Empty :
-The function empty allows to know if a string is empty or not returning a boolean. To do this the algorithm tests
-if the attribute len_ is superior to one or not.
-Pre_condition : A string
-Post-condition : The boolean returned is TRUE is len_ <=1 (?????) else this one is False
-*/
+
 bool String::empty(){
 	bool res;
 	if(len_<=1) // Pourquoi 1 et pas 0 ???????? 
@@ -165,22 +148,6 @@ bool String::empty(){
 	return res;
 }
 
-/* reserve:
-The method reserve allows to forecast a changement of size, like this the user could choose the future size of his string. 
-If the size choosen is upper than the current capacity_ a array of the planed size is created and this one is filled by the
-current word_. Otherwise this algorithm allows to optimize the capacity by building a new array of size equal to the current 
-len_ more one. Finally if the newsize exceed the capacity a warning message appears.
-In order to optimize the optimize the capacity a tempory array is created, then this one is filled with the word. The memory the 
-older word is free. Then the attribute word_ is updated using the temppory array. Then this tempory array is delete and the capacity 
-is updated.
-Post-condition : In any case, the string and its length are modified only the capacity of the array containing the string could be changed.
-                If the forecasted size (newsier setted by user) is lower than MAX_LEN_ and if this one is lower than the current capacity_ a new array of the wanted
-                sized is created an the former one is delete.
-                If the forecasted size is lower than MAX_LEN_ but this one s lower than the current capacoty_, a new array of char is created
-                its size is adjusted to optimize the memory occupied by the string. Like this this size is set to the current len_ more one.
-                If the capacity is ever eaqual to the current capacity_ nothing is done.
-                Else if the forcast size exceed the capacity a warning messaga appears.
-*/
 
 void String::reserve(int newsize)
 {
@@ -238,8 +205,7 @@ void String::reserve(int newsize)
     }
 }
 
-/* Display :
-The method display allows to print each char containing in the attribute word_.*/
+// displays the content of all the bytes allocated (up to capacity)
 void String::display()
 {
     int i=0;
@@ -254,10 +220,7 @@ void String::display()
 // Operators
 // ####################################################################
 
-/* operator = c
-This operator allows to user to replace the current strign by a c-string.
-... (J continueRAI)
-*/
+
 String& String::operator=(const char* c)
 {
     // Step 1: determine char[] size
@@ -283,11 +246,14 @@ String& String::operator=(const char* c)
             for(i=0 ; i <= charSize ; ++i) // up to the end of the new char, including '\0'
             {
                 p_word_[i]=*(c+i);
+                std::cout << p_word_[i]<<std::endl;
             }
             int j=i;
             // Update word
             len_ = charSize-1;
             this->reserve(charSize);
+
+
         }
         else if (this->capacity() < charSize){ // if char is longer
             this->reserve(charSize);
