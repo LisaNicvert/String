@@ -5,9 +5,7 @@ int String::MAX_LEN_=100;
 //Constructors
 // ####################################################################
 
-/* Default constructor : 
-Using this constructor users could initiante a new string, with a null length and a null capacity.
-The pointer world_ is set to a nullptr.*/
+
 String::String()
 {
 	len_=0;
@@ -16,24 +14,18 @@ String::String()
     p_word_ =nullptr;
 }
 
-/* Parameterized constructor :
-Using this constructor users could build a new string passing as argument an array of chars. This constructor
-uses the definition of a c-string to build a new string. That's it so say, while the algorithm doesn't reach the
-null character a counter sum the number of occurence. At the end of this while loop the counter is equal to
-the length. To calcul the capicity we add 1 to the current length. This allows to take into account the null character.
-Finally to initialize the attribute word_ the algorithm allocates a block of memory to contain an array of char of size
-equal to the current capacity_.
-*/
+
 String::String(const char *c_string) 
 {
-
 	int i=0 ; 
     // This while loop runs until to reach the last 
 	while (c_string[i] != '\0')
 	{
         
 		++i;
+       
 	}
+
     // If the c_string exceed Max_LEN a warning message informs the user that this action is impossible.
     if ( i > MAX_LEN_)
     {
@@ -42,25 +34,34 @@ String::String(const char *c_string)
     else
     {    
 	len_ = i ; 
-	capacity_ = len_ + 1; 
+	capacity_ = len_ +1 ; 
     // Allocation of memory
 	word_ = new char [(capacity_)*sizeof(char)];
-    // filling an array char
-	for (i=0 ; i <= len_ ; i++)
+    //filling an array char
+	for (i=0 ; i < len_ ; i++)
 	{
-       // std::cout<<i<<std::endl;
 		word_[i] = c_string[i];
 	}
-	word_[capacity_] = '\0'; 
+	word_[len_] = '\0'; 
     p_word_ = &word_[0];
     }
 }
 
 // ####################################################################
+// Destructor
+// ####################################################################
+String::~String()
+{
+    // Add the delete [var] here when you make a new manual allocation in a function.
+    delete [] word_ ; 
+}
+
+
+// ####################################################################
 // Getters
 // ####################################################################
 
-/* These Getters allow to users to access to each attribute of the class String.*/
+
 int String::len()
 {
 	return len_;
@@ -74,6 +75,8 @@ char* String::word()
 {
 	return word_;
 }
+
+
 
 // ####################################################################
 // Methods
@@ -94,7 +97,7 @@ void String::resize(int newlength, const char& c )
 		{
 			newword[i] = word_[i];
 		}
-	    newword [newlength + 1 ] = '\0'; 
+	    newword [newlength] = '\0'; 
         // Free memory
 		delete[] word_;
         // Redefinition of the attribute word_
@@ -117,7 +120,7 @@ void String::resize(int newlength, const char& c )
 			newword[i] = c;
 			}
 		}
-		newword [newlength + 1 ] = '\0';
+		newword [newlength] = '\0';
         // free memory
 		delete[]  word_;
         // Redefinition of the attribute word_
@@ -156,8 +159,9 @@ void String::reserve(int newsize)
         {
             char * temp = new char[len_ + 1];
         
-            for(int i=0 ; i<=len_+1 ; i++){ // to copy the word
+            for(int i=0 ; i<=len_ ; i++){ // to copy the word  
                 temp[i]=word_[i];
+                std::cout<<temp[i]<<std::endl;
             }
         
             delete[] word_; // del previous
@@ -189,7 +193,7 @@ void String::reserve(int newsize)
                 word_[i]=temp[i];
             }
         
-            word_[capacity_] = '\0';
+            word_[len_] = '\0'; // Attention j'ai changé cette ligne anciennement == word_[capacity]
     
             delete[] temp;
             capacity_=this->len()+1;
@@ -231,10 +235,11 @@ String& String::operator=(const char* c)
         ++ charSize; 
     }
     ++charSize; // at the end, it is worth the length with '\0'
+
     
     if(charSize <=  MAX_LEN_){
         if(this->capacity() == charSize){ // if String capacity is equal to charSize
-            for(int i=0 ; i <= charSize+1 ; ++i)
+            for(int i=0 ; i <= charSize  - 1 ; ++i)
             {
             word_[i]=*(c+i);
             }
@@ -246,7 +251,6 @@ String& String::operator=(const char* c)
             for(i=0 ; i <= charSize ; ++i) // up to the end of the new char, including '\0'
             {
                 p_word_[i]=*(c+i);
-                std::cout << p_word_[i]<<std::endl;
             }
             int j=i;
             // Update word
@@ -272,14 +276,7 @@ String& String::operator=(const char* c)
     return *this;
 }
 
-//void String::Resize(   , int n ) //  n taille voulue -> ça fait quoi ici ?
 
-/* Operator = char c
-This operator allow to replace a string by a single char choosen.
-The array of char containing the string is deleted and a new string is initialized.
-Pre-conditions : A string 
-Post-conditions : A string containing a simple character choosen by the user.
-*/
 String& String::operator=(char c)
 {
     // Step n°1 : deletion
@@ -294,7 +291,7 @@ String& String::operator=(char c)
 String operator+(const String& s, const char* c )
 {
 	
-	String s2(c);
+	String s2(c); // Build a new string
 	int len2 = s2.len_;
 	int len1 = s.len_;
 	int newlength = len1 + len2;
@@ -398,11 +395,3 @@ String operator+(const String& lhs, const String& rhs)
 }
 
 
-// ####################################################################
-// Destructor
-// ####################################################################
-String::~String()
-{
-	// Add the delete [var] here when you make a new manual allocation in a function.
-    delete [] word_ ; 
-}

@@ -4,15 +4,13 @@
 using namespace std;
 
 int main(){
+
     // Ctor test
 	char Hello[]="Bonjour";
-   
-    cout << Hello[0] << endl;
 	
     /*------------------------
     * Ctor test
     ------------------------*/
-    
 
     /*
 	cout << "Test de constructeur " <<endl;	
@@ -21,8 +19,8 @@ int main(){
 	std::cout<<"Mot en mémoire " << mystr.word() << std::endl;
 	std::cout<< "Cpacité = mémoire allouée  "<<mystr.capacity() << std::endl;
     mystr.display();
-    mystr.~String()
-    */ 
+    */
+    
     
     /*------------------------
     * resize test
@@ -52,6 +50,7 @@ int main(){
     * operator=(char) test
     ------------------------*/
     /*
+
 	cout << "Test de l'opérateur=(char)"<<endl;
 	mystr = "A";
 	std::cout<< mystr.len() << std::endl;
@@ -63,7 +62,7 @@ int main(){
 	/*------------------------
     * operator+(char *) test
     ------------------------*/
-    /*
+         String mystr(Hello);
 	cout << "Test de l'opérateur+ (char *)"<<endl;
 	char c1[] = "Bien le ";
 	String s1(c1);
@@ -81,7 +80,7 @@ int main(){
 	// len accessor test
     cout<< "mystr len :" << mystr.len() << endl;
     mystr.display();
-	*/
+	
     
     /*------------------------
     * capacity getter test
@@ -104,22 +103,22 @@ int main(){
 	/*------------------------
     * reserve test
     ------------------------*/
+     /*
     
     String mystr(Hello);
-    /*
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     
     // equal capacity
     cout<< "equal capacity:" << endl;
     mystr.reserve(8);
-    mystr.display();
+    //mystr.display();
     cout<< "------------------------------------------" << endl;
     
     // greater capacity
     cout<< "greater capacity:" << endl;
-	mystr.reserve(40);
+	mystr.reserve(10);
 	cout<< "mystr capacity: " << mystr.capacity() << endl;
-	mystr.display();
+	//mystr.display();
     cout<< "------------------------------------------" << endl;
     
     // lesser capacity
@@ -129,12 +128,13 @@ int main(){
     cout<< "mystr len: " << mystr.len() << endl;
     mystr.display();
     cout<< "------------------------------------------" << endl;
-    
     */
+    
     /*------------------------
     * Display tests
     ------------------------*/
     /*
+    
     mystr.display();
     mystr.reserve(40);
     mystr.display();
@@ -143,25 +143,27 @@ int main(){
     emptystr.display();
     
     */
-    
+ 
+
     /*------------------------
     * Operator=(char *) tests
     ------------------------*/
     /*
     char secondChar[]="AFRESdt";
    
+   
     // Equal capacity
     char* ptr= &secondChar[0];
-    
     mystr=ptr;
     
     cout<< mystr.word() << endl;
     cout<< "mystr display: "  << endl;
     mystr.display();
-    
     */
     
+    
     // String greater cap
+    /*
     char secondChar[]="AFRESdt";
     mystr.reserve(40);
     cout<< "mystr display before: "  << endl;
@@ -173,11 +175,13 @@ int main(){
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     cout<< "mystr display after: "  << endl;
     mystr.display();
+    */
     
-    /*
     
+
     // String lesser cap
     
+    /*
     char secondChar[]="AFRESdfdvqfdbdfbt";
     char* ptr= &secondChar[0];
     
@@ -193,7 +197,7 @@ int main(){
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     */
     
-    /*
+    
     // Original str is longer
     char secondChar[]="AFR";
     char* ptr= &secondChar[0];
@@ -204,7 +208,7 @@ int main(){
     
     cout<< mystr.word() << endl;
     cout<< "mystr capacity: " << mystr.capacity() << endl;
-    */
+    
     
     
     // Too long char
