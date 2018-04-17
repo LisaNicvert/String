@@ -71,7 +71,7 @@ int main(){
 	String s;
 	s = s1 + c2;
 	cout << s.word()<<endl;
-	
+	/*
 	cout << "Test de l'opérateur (char *)+ String"<<endl;
 
 	String s_othersens;
@@ -80,7 +80,7 @@ int main(){
 	// len accessor test
     cout<< "mystr len :" << mystr.len() << endl;
     mystr.display();
-	
+	*/
     
     /*------------------------
     * capacity getter test

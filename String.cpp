@@ -161,7 +161,6 @@ void String::reserve(int newsize)
         
             for(int i=0 ; i<=len_ ; i++){ // to copy the word  
                 temp[i]=word_[i];
-                std::cout<<temp[i]<<std::endl;
             }
         
             delete[] word_; // del previous
@@ -239,7 +238,7 @@ String& String::operator=(const char* c)
     
     if(charSize <=  MAX_LEN_){
         if(this->capacity() == charSize){ // if String capacity is equal to charSize
-            for(int i=0 ; i <= charSize  - 1 ; ++i)
+            for(int i=0 ; i <= charSize  - 1 ; ++i) 
             {
             word_[i]=*(c+i);
             }
@@ -344,7 +343,7 @@ String operator+(const char* c ,const String& s )
         {	
             newword[len1+i] = s.word_[i];	
         }
-        newword [len1 + len2 + 1 ] = '\0';
+        //newword [len1 + len2 + 1 ] = '\0';
         res.word_ = newword;
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
