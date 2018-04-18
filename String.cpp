@@ -10,8 +10,9 @@ String::String()
 {
 	len_=0;
 	capacity_=0;
-	word_=nullptr;
-    p_word_ =nullptr;
+    word_ = new char [(1)*sizeof(char)];
+	word_[0]='\0';
+    p_word_ =&word_[0];
 }
 
 
@@ -287,31 +288,37 @@ String& String::operator=(char c)
 	return *this;
 }
 
-String operator+(const String& s, const char* c )
+String operator+(const String& s1, const char* c )
 {
 	
 	String s2(c); // Build a new string
 	int len2 = s2.len_;
-	int len1 = s.len_;
+	int len1 = s1.len_;
 	int newlength = len1 + len2;
-    
     String res;
-    
+   
     if(newlength+1 <= String::MAX_LEN_)
     {
-        char *newword = new char [newlength + 1];
-        for (int i=0 ; i<=len1 ; ++i)
+        char *newword = new char [newlength+1];
+        for (int i=0 ; i<len1 ; ++i) // We ommit the '\0'
         {	
-            newword[i] = s.word_[i];	
+            newword[i] = s1.word_[i];
+           //std::cout <<"first part newword     " <<newword[i] << "    pos   :"<< i<< std::endl;
+            
+
         }
         for (int i=0 ; i<=len2 ; ++i)
         {	
-            newword[len1+i] = s2.word_[i];	
+            newword[i+ (len1  )] = s2.word_[i];
+            //std::cout <<"Second part     " <<newword[i + len1] << "    pos   :"<< i <<"    Second part Index    " <<i + len1 <<  std::endl;
+         
         }
-        newword [len1 + len2 + 1 ] = '\0';
+        
+              
         res.word_ = newword;
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
+        //delete [] newword;
 	}	
     else if(newlength+1 > String:: MAX_LEN_)
     {
@@ -323,27 +330,29 @@ String operator+(const String& s, const char* c )
     return res;
 }
 
-String operator+(const char* c ,const String& s )	
+String operator+(const char* c ,const String& s2 )	
 {
 	String s1(c);
 	int len1 = s1.len_;
-	int len2 = s.len_;
+	int len2 = s2.len_;
 	int newlength = len1 + len2;
-    
+
+
     String res;
     
     if(newlength+1 <= String::MAX_LEN_)
     {
-        char *newword = new char [newlength + 1];
+        char *newword = new char [newlength +1];
         for (int i=0 ; i<=len1 ; ++i)
         {	
             newword[i] = s1.word_[i];	
+
         }
-        for (int i=0 ; i<=len2 ; ++i)
+        for (int i=0 ; i<= len2 ; ++i)
         {	
-            newword[len1+i] = s.word_[i];	
+            newword[len1+i] = s2.word_[i];	
         }
-        //newword [len1 + len2 + 1 ] = '\0';
+        newword [len1 + len2 ] = '\0';
         res.word_ = newword;
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
@@ -377,7 +386,7 @@ String operator+(const String& lhs, const String& rhs)
         {	
             newword[len1+i] = rhs.word_[i];	
         }
-        newword [newlength + 1 ] = '\0';
+        newword [newlength ] = '\0';
         res.word_ = newword;
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;

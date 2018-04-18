@@ -62,26 +62,34 @@ int main(){
 	/*------------------------
     * operator+(char *) test
     ------------------------*/
-         String mystr(Hello);
+    
+    char Hello2[]="cou";
+    String mystr2(Hello2);
+  
 	cout << "Test de l'opérateur+ (char *)"<<endl;
-	char c1[] = "Bien le ";
+	char c1[] = "cou";
 	String s1(c1);
-	char c2[] = "bonjour !";
+	char c2[] = "ABC";
 
 	String s;
 	s = s1 + c2;
 	cout << s.word()<<endl;
-	/*
+    s.display();
+    cout << s.len()<<endl;
+    cout << s.capacity()<<endl;
+    
+    /*
+	
 	cout << "Test de l'opérateur (char *)+ String"<<endl;
 
 	String s_othersens;
-	s = c2 + s1;
-	cout << s.word()<<endl;
+	s_othersens = c2 + s1;
+	cout << s_othersens.word()<<endl;
 	// len accessor test
-    cout<< "mystr len :" << mystr.len() << endl;
-    mystr.display();
-	*/
-    
+    cout<< "mystr len :" << mystr2.len() << endl;
+    mystr2.display();
+	
+    */
     /*------------------------
     * capacity getter test
     ------------------------*/
@@ -199,6 +207,7 @@ int main(){
     
     
     // Original str is longer
+    /*
     char secondChar[]="AFR";
     char* ptr= &secondChar[0];
     mystr=ptr;
@@ -209,7 +218,7 @@ int main(){
     cout<< mystr.word() << endl;
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     
-    
+    */
     
     // Too long char
     /*
@@ -228,11 +237,11 @@ int main(){
     /*------------------------
     * operator+(string) test
     ------------------------*/
-    /*
+    
     String mystr(Hello);
     cout << mystr.word() << endl;    
     cout<< "mystr len: " << mystr.len() << endl;
-    */
+   
     
     // If new word is too long
     /*
@@ -243,7 +252,7 @@ int main(){
     */
     
     // If newword is ok
-    /*
+    
     char secondChar[]=", ca va ?"; // problem il I use ç, it tells me rhs has length 10... (instead of 9)
     String rhs(secondChar);
     cout<< "rhs len: " << rhs.len() << endl;
@@ -251,8 +260,9 @@ int main(){
     cout<< newstring.word() << endl;
     cout<< "newstring capacity: " << newstring.capacity() << endl;
     cout<< "newstring len: " << newstring.len() << endl;
-    */
-
+    newstring.display();
+    
+    
 	return 0;
 }
 
