@@ -4,23 +4,23 @@
 using namespace std;
 
 int main(){
+
     // Ctor test
 	char Hello[]="Bonjour";
-    cout << Hello[0] << endl;
 	
     /*------------------------
     * Ctor test
     ------------------------*/
-    
+
+    /*
 	cout << "Test de constructeur " <<endl;	
 	String mystr(Hello);
 	std::cout<< "length de Bonjour "<<mystr.len() << std::endl;
 	std::cout<<"Mot en mémoire " << mystr.word() << std::endl;
 	std::cout<< "Cpacité = mémoire allouée  "<<mystr.capacity() << std::endl;
     mystr.display();
-    mystr.~String();
+    */
     
-
     
     /*------------------------
     * resize test
@@ -51,6 +51,7 @@ int main(){
     * operator=(char) test
     ------------------------*/
     /*
+
 	cout << "Test de l'opérateur=(char)"<<endl;
 	mystr = "A";
 	std::cout<< mystr.len() << std::endl;
@@ -62,26 +63,34 @@ int main(){
 	/*------------------------
     * operator+(char *) test
     ------------------------*/
-    /*
+    
+    char Hello2[]="cou";
+    String mystr2(Hello2);
+  
 	cout << "Test de l'opérateur+ (char *)"<<endl;
-	char c1[] = "Bien le ";
+	char c1[] = "cou";
 	String s1(c1);
-	char c2[] = "bonjour !";
+	char c2[] = "ABC";
 
 	String s;
 	s = s1 + c2;
 	cout << s.word()<<endl;
+    s.display();
+    cout << s.len()<<endl;
+    cout << s.capacity()<<endl;
+    
+    /*
 	
 	cout << "Test de l'opérateur (char *)+ String"<<endl;
 
 	String s_othersens;
-	s = c2 + s1;
-	cout << s.word()<<endl;
+	s_othersens = c2 + s1;
+	cout << s_othersens.word()<<endl;
 	// len accessor test
-    cout<< "mystr len :" << mystr.len() << endl;
-    mystr.display();
-	*/
-    
+    cout<< "mystr len :" << mystr2.len() << endl;
+    mystr2.display();
+	
+    */
     /*------------------------
     * capacity getter test
     ------------------------*/
@@ -103,22 +112,22 @@ int main(){
 	/*------------------------
     * reserve test
     ------------------------*/
-    /*
-    String mystr(Hello);
+     /*
     
+    String mystr(Hello);
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     
     // equal capacity
     cout<< "equal capacity:" << endl;
     mystr.reserve(8);
-    mystr.display();
+    //mystr.display();
     cout<< "------------------------------------------" << endl;
     
     // greater capacity
     cout<< "greater capacity:" << endl;
-	mystr.reserve(40);
+	mystr.reserve(10);
 	cout<< "mystr capacity: " << mystr.capacity() << endl;
-	mystr.display();
+	//mystr.display();
     cout<< "------------------------------------------" << endl;
     
     // lesser capacity
@@ -134,23 +143,26 @@ int main(){
     * Display tests
     ------------------------*/
     /*
+    
     mystr.display();
     mystr.reserve(40);
     mystr.display();
     char empty[]="";
 	String emptystr(empty);
     emptystr.display();
+    
     */
-    
-    
+ 
+
     /*------------------------
     * Operator=(char *) tests
     ------------------------*/
     /*
     char secondChar[]="AFRESdt";
+   
+   
     // Equal capacity
     char* ptr= &secondChar[0];
-    
     mystr=ptr;
     
     cout<< mystr.word() << endl;
@@ -158,8 +170,9 @@ int main(){
     mystr.display();
     */
     
-    /*
+    
     // String greater cap
+    /*
     char secondChar[]="AFRESdt";
     mystr.reserve(40);
     cout<< "mystr display before: "  << endl;
@@ -171,11 +184,13 @@ int main(){
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     cout<< "mystr display after: "  << endl;
     mystr.display();
+    */
     
     
-    
+
     // String lesser cap
     
+    /*
     char secondChar[]="AFRESdfdvqfdbdfbt";
     char* ptr= &secondChar[0];
     
@@ -191,8 +206,9 @@ int main(){
     cout<< "mystr capacity: " << mystr.capacity() << endl;
     */
     
-    /*
+    
     // Original str is longer
+    /*
     char secondChar[]="AFR";
     char* ptr= &secondChar[0];
     mystr=ptr;
@@ -202,8 +218,8 @@ int main(){
     
     cout<< mystr.word() << endl;
     cout<< "mystr capacity: " << mystr.capacity() << endl;
-    */
     
+    */
     
     // Too long char
     /*
@@ -222,11 +238,11 @@ int main(){
     /*------------------------
     * operator+(string) test
     ------------------------*/
-    /*
+    
     String mystr(Hello);
     cout << mystr.word() << endl;    
     cout<< "mystr len: " << mystr.len() << endl;
-    */
+   
     
     // If new word is too long
     /*
