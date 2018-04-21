@@ -63,20 +63,20 @@ int main(){
     * operator+(char *) test
     ------------------------*/
     
-    char Hello2[]="cou";
+    char Hello2[]="Coucou";
     String mystr2(Hello2);
   
 	cout << "Test de l'opérateur+ (char *)"<<endl;
-	char c1[] = "cou";
+	char c1[] = "coucou";
 	String s1(c1);
-	char c2[] = "ABC";
-
+    char c2[] = " = Coloquial";
+    
 	String s;
 	s = s1 + c2;
-	cout << s.word()<<endl;
-    s.display();
-    cout << s.len()<<endl;
-    cout << s.capacity()<<endl;
+	//cout << s.word()<<endl;
+    //s.display();
+    //cout << s.len()<<endl;
+   // cout << s.capacity()<<endl;
     
     /*
 	
@@ -237,12 +237,12 @@ int main(){
     /*------------------------
     * operator+(string) test
     ------------------------*/
-    
+    /*
     String mystr(Hello);
     cout << mystr.word() << endl;    
     cout<< "mystr len: " << mystr.len() << endl;
    
-    
+    */
     // If new word is too long
     /*
     char secondChar[]="AFRdqgfdfbfdgnfegnhreghfsgdfgrgfhrefghngrezgfregfrghfezfghdfdfdqsfgdqfghfdghdqsfghydscvfghredqsfghredqsvfghrtedqsfghtedqscvb";
@@ -252,7 +252,7 @@ int main(){
     */
     
     // If newword is ok
-    
+    /*
     char secondChar[]=", ca va ?"; // problem il I use ç, it tells me rhs has length 10... (instead of 9)
     String rhs(secondChar);
     cout<< "rhs len: " << rhs.len() << endl;
@@ -261,7 +261,7 @@ int main(){
     cout<< "newstring capacity: " << newstring.capacity() << endl;
     cout<< "newstring len: " << newstring.len() << endl;
     newstring.display();
-    
+    */
     
 	return 0;
 }

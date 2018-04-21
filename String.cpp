@@ -10,9 +10,9 @@ String::String()
 {
 	len_=0;
 	capacity_=0;
-    word_ = new char [(1)*sizeof(char)];
-	word_[0]='\0';
-    p_word_ =&word_[0];
+    //word_ = new char [(1)*sizeof(char)];
+	word_=nullptr;
+    p_word_ =nullptr;
 }
 
 
@@ -290,36 +290,43 @@ String& String::operator=(char c)
 
 String operator+(const String& s1, const char* c )
 {
-	
-	String s2(c); // Build a new string
-	int len2 = s2.len_;
-	int len1 = s1.len_;
-	int newlength = len1 + len2;
+    
+    String s2(c); // Build a new string
+    int len2 = s2.len_;
+    int len1 = s1.len_;
+    int newlength = len1 + len2;
     String res;
    
     if(newlength+1 <= String::MAX_LEN_)
     {
         char *newword = new char [newlength+1];
         for (int i=0 ; i<len1 ; ++i) // We ommit the '\0'
-        {	
+        {   
             newword[i] = s1.word_[i];
            //std::cout <<"first part newword     " <<newword[i] << "    pos   :"<< i<< std::endl;
             
 
         }
-        for (int i=0 ; i<=len2 ; ++i)
-        {	
-            newword[i+ (len1  )] = s2.word_[i];
+        for (int i=0 ; i<len2 ; ++i)
+        {   
+            newword[i+ len1 ] = s2.word_[i];
             //std::cout <<"Second part     " <<newword[i + len1] << "    pos   :"<< i <<"    Second part Index    " <<i + len1 <<  std::endl;
          
         }
-        
-              
+        newword[newlength]='*';
+      
         res.word_ = newword;
+        for (int i=0 ; i<= newlength; ++i)
+        {
+            std::cout<<res.word_[i]<<std::endl;
+        }
+    
+        res.p_word_ =&res.word_[0];
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
+
         //delete [] newword;
-	}	
+    }   
     else if(newlength+1 > String:: MAX_LEN_)
     {
         std::cout << "ERROR: RESULT OF LENGTH " << newlength << " WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
@@ -330,30 +337,30 @@ String operator+(const String& s1, const char* c )
     return res;
 }
 
-String operator+(const char* c ,const String& s2 )	
+String operator+(const char* c ,const String& s2 )  
 {
-	String s1(c);
-	int len1 = s1.len_;
-	int len2 = s2.len_;
-	int newlength = len1 + len2;
-
-
     String res;
+    String s1(c);
+    int len1 = s1.len_;
+    int len2 = s2.len_;
+    int newlength = len1 + len2;
+
     
     if(newlength+1 <= String::MAX_LEN_)
     {
-        char *newword = new char [newlength +1];
+        char *newword = new char [newlength];
         for (int i=0 ; i<=len1 ; ++i)
-        {	
-            newword[i] = s1.word_[i];	
+        {   
+            newword[i] = s1.word_[i];   
 
         }
         for (int i=0 ; i<= len2 ; ++i)
-        {	
-            newword[len1+i] = s2.word_[i];	
+        {   
+            newword[len1+i] = s2.word_[i];  
         }
-        newword [len1 + len2 ] = '\0';
+        //newword [len1 + len2 ] = '\0';
         res.word_ = newword;
+        res.p_word_ =&res.word_[0];
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
     }
@@ -366,6 +373,7 @@ String operator+(const char* c ,const String& s2 )
     }
     return res;
 }
+
 
 String operator+(const String& lhs, const String& rhs)
 {
@@ -377,10 +385,11 @@ String operator+(const String& lhs, const String& rhs)
     
     if(newlength+1 <= String::MAX_LEN_)
     {
-        char *newword = new char [newlength + 1];
+        char *newword = new char [newlength+1];
         for (int i=0 ; i<=len1 ; ++i)
         {	
             newword[i] = lhs.word_[i];	
+            std::cout <<"first part newword     " <<newword[i] << "    pos   :"<<  i<< std::endl;
         }
             for (int i=0 ; i<=len2 ; ++i)
         {	
@@ -388,6 +397,7 @@ String operator+(const String& lhs, const String& rhs)
         }
         newword [newlength ] = '\0';
         res.word_ = newword;
+        res.p_word_ =&res.word_[0];
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
     
