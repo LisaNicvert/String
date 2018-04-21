@@ -67,6 +67,7 @@ int main(){
     ------------------------*/
     
     //###################################### WORKS
+    /*
     char Hello2[]="cou";
     String mystr2(Hello2);
     
@@ -82,7 +83,7 @@ int main(){
     s.display();
     cout << s.len()<<endl;
     cout << s.capacity()<<endl;
-    
+    */
     
     
     // Too long
@@ -100,11 +101,13 @@ int main(){
     */
     
     
-	cout << "Test de l'opérateur (char *)+ String"<<endl;
+	
     
 
     // Len okay
     /*
+    
+    cout << "Test de l'opérateur (char *)+ String"<<endl;
     //###################################### PB WITH DESTRUCTOR AND MEMORY LEAK
     char c1[] = "cou";
 	String s1(c1);
