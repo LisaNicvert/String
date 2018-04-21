@@ -340,44 +340,69 @@ String& String::operator=(char c)
 
 String operator+(const String& s1, const char* c )
 {
-	
-	String s2(c); // Build a new string
-	int len2 = s2.len_;
-	int len1 = s1.len_;
-	int newlength = len1 + len2;
-    String res;
-   
-    if(newlength+1 <= String::MAX_LEN_)
+    bool possible=1; // this operation is necessary to say wether s2 can be constructed or not (if char is not too long)
+    
+    int i=0;
+    while (c[i] != '\0' && i<String::MAX_LEN_)
+	{
+        
+		++i;
+	}
+    if ( i == String::MAX_LEN_)
     {
+        possible=0;
+    }
+	
+    String res;
+    
+    if(possible){
+        String s2(c); // Build a new string
+        int len2 = s2.len_;
+        int len1 = s1.len_;
+        int newlength = len1 + len2;
+
         char *newword = new char [newlength+1];
         for (int i=0 ; i<len1 ; ++i) // We ommit the '\0'
         {	
             newword[i] = s1.word_[i];
-           //std::cout <<"first part newword     " <<newword[i] << "    pos   :"<< i<< std::endl;
-            
-
+            //std::cout <<"first part newword     " <<newword[i] << "    pos   :"<< i<< std::endl;
         }
+    
         for (int i=0 ; i<=len2 ; ++i)
         {	
-            newword[i+ (len1  )] = s2.word_[i];
+            newword[i+len1] = s2.word_[i];
             //std::cout <<"Second part     " <<newword[i + len1] << "    pos   :"<< i <<"    Second part Index    " <<i + len1 <<  std::endl;
-         
         }
-        
-              
-        res.word_ = newword;
+    
+        res.reserve(newlength+1); // to allocate space to copy the word then
+        //res.display();
+        //std::cout<<"res cap : "<<res.capacity()<<std::endl;
+    
+        std::cout <<"copied:"<<std::endl;
+        for(int i=0 ; i<newlength+1 ; i++){ // to copy the word
+            res.word_[i]=newword[i];
+            //std::cout <<res.word_[i];
+        }
+        newword [len1 + len2 ] = '\0';
+        //std::cout<<std::endl;
+    
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
-        //delete [] newword;
-	}	
-    else if(newlength+1 > String:: MAX_LEN_)
+    
+        delete[] newword;
+    }
+    else if(!possible)
     {
-        std::cout << "ERROR: RESULT OF LENGTH " << newlength << " WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
-        char* temp = new char[0];
+        std::cout << "ERROR: RESULT WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
+        /*char* temp = new char[0];
         String res(temp);
         delete[] temp;
+        return res;*/
     }
     return res;
+    //################################################
+    // Problème : on retourne une variable locale !!
+    //################################################
 }
 
 /* operator + (char*) : String + char*
@@ -394,39 +419,67 @@ String operator+(const String& s1, const char* c )
         
 String operator+(const char* c ,const String& s2 )	
 {
-	String s1(c);
-	int len1 = s1.len_;
-	int len2 = s2.len_;
-	int newlength = len1 + len2;
-
-
+    
+    bool possible=1; // this operation is necessary to say wether s2 can be constructed or not (if char is not too long)
+    
+    int i=0;
+    while (c[i] != '\0' && i<String::MAX_LEN_)
+	{
+        
+		++i;
+	}
+    if ( i == String::MAX_LEN_)
+    {
+        possible=0;
+    }
+	
     String res;
     
-    if(newlength+1 <= String::MAX_LEN_)
+    if(possible)
     {
-        char *newword = new char [newlength +1];
-        for (int i=0 ; i<=len1 ; ++i)
-        {	
-            newword[i] = s1.word_[i];	
+        String s1(c);
+        int len1 = s1.len_;
+        int len2 = s2.len_;
+        int newlength = len1 + len2;
 
+        char *newword = new char [newlength +1];
+        for (int i=0 ; i<len1 ; ++i)
+        {	
+            newword[i] = s1.word_[i];
         }
         for (int i=0 ; i<= len2 ; ++i)
         {	
-            newword[len1+i] = s2.word_[i];	
+            newword[len1+i] = s2.word_[i];
         }
+        
+        res.reserve(newlength+1); // to allocate space to copy the word then
         newword [len1 + len2 ] = '\0';
-        res.word_ = newword;
+
+        for(int i=0 ; i<newlength+1 ; i++){ // to copy the word
+            res.word_[i]=newword[i];
+        }
+            
+        
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
+                
+        delete[] newword;
+        
+        //################################################
+        // Memory leak !!
+        //################################################
     }
-    else if(newlength+1 > String:: MAX_LEN_)
+    else if(!possible)
     {
-        std::cout << "ERROR: RESULT OF LENGTH " << newlength << " WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
-        char* temp = new char[0];
-        String res(temp);
-        delete[] temp;
+        std::cout << "ERROR: RESULT WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
+        //################################################
+        // Memory leak !!
+        //################################################
     }
     return res;
+    //################################################
+    // Problème : on retourne une variable locale !!
+    //################################################
 }
 
 /* operator + (String) : String + String
@@ -441,13 +494,20 @@ String operator+(const char* c ,const String& s2 )
 
 String operator+(const String& lhs, const String& rhs)
 {
-    int len1 = lhs.len_;
-	int len2 = rhs.len_;
-    int newlength= len1+ len2;
+    bool possible=1; // this operation is necessary to say wether s2 can be constructed or not (if char is not too long)
     
+    int len1 = lhs.len_;
+    int len2 = rhs.len_;
+    int newlength= len1+ len2;
+        
+    if ( newlength >= String::MAX_LEN_)
+    {
+        possible=0;
+    }
+	
     String res;
     
-    if(newlength+1 <= String::MAX_LEN_)
+    if(possible)
     {
         char *newword = new char [newlength + 1];
         for (int i=0 ; i<=len1 ; ++i)
@@ -458,20 +518,26 @@ String operator+(const String& lhs, const String& rhs)
         {	
             newword[len1+i] = rhs.word_[i];	
         }
-        newword [newlength ] = '\0';
-        res.word_ = newword;
+        
+        res.reserve(newlength+1); // to allocate space to copy the word then
+        
+        for(int i=0 ; i<newlength+1 ; i++){ // to copy the word
+                res.word_[i]=newword[i];
+            }
+            
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
-    
+        
+        delete[] newword;    
     }
-    else if(newlength+1 > String:: MAX_LEN_)
+    else if(!possible)
     {
         std::cout << "ERROR: RESULT OF LENGTH " << newlength << " WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
-        char* temp = new char[0];
-        String res(temp);
-        delete[] temp;
     }
     return res;
+    //################################################
+    // Problème : on retourne une variable locale !!
+    //################################################
 }
 
 
@@ -481,7 +547,7 @@ String operator+(const String& lhs, const String& rhs)
 String::~String()
 {
 	// Add the delete [var] here when you make a new manual allocation in a function.
-    if(capacity_>1){ // because else the pointer was never allocated
+    //if(capacity_>1){ // because else the pointer was never allocated
         delete [] word_ ; 
-    }
+    //}
 }

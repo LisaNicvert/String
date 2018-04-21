@@ -136,6 +136,7 @@ class String{
         
         /* operator + (string)
             allows to concatenate two strings.
+        Preconditions: the strings passed as parameters must be valid, ie shorter than 100.
         Postconditions: if the resulting size is greater than 100, a message is displayed : 
             "ERROR: RESULT OF LENGTH [resulting length] WOULD OVERSTEPS MAXIMAL LEGAL LENGTH" 
         and the capacity doesn't change. */		
