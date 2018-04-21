@@ -46,6 +46,7 @@ int main(){
 	std::cout<< mystr.word() << std::endl;
 	std::cout<< mystr.capacity() << std::endl;
     */
+    
     /*------------------------
     * operator=(char) test
     ------------------------*/
@@ -145,7 +146,7 @@ int main(){
     /*------------------------
     * Operator=(char *) tests
     ------------------------*/
-    
+    /*
     char secondChar[]="AFRESdt";
     // Equal capacity
     char* ptr= &secondChar[0];
@@ -155,7 +156,7 @@ int main(){
     cout<< mystr.word() << endl;
     cout<< "mystr display: "  << endl;
     mystr.display();
-    
+    */
     
     /*
     // String greater cap
@@ -236,7 +237,7 @@ int main(){
     */
     
     // If newword is ok
-    /*
+    
     char secondChar[]=", ca va ?"; // problem il I use ç, it tells me rhs has length 10... (instead of 9)
     String rhs(secondChar);
     cout<< "rhs len: " << rhs.len() << endl;
@@ -244,8 +245,20 @@ int main(){
     cout<< newstring.word() << endl;
     cout<< "newstring capacity: " << newstring.capacity() << endl;
     cout<< "newstring len: " << newstring.len() << endl;
+    newstring.display(); // ERROR
+    //#################################################@
+    
+    // If newword is empty
+    /*
+    char secondChar[]="";
+    String rhs(secondChar);
+    cout<< "rhs len: " << rhs.len() << endl;
+    String newstring=mystr+rhs;
+    cout<< newstring.word() << endl;
+    cout<< "newstring capacity: " << newstring.capacity() << endl;
+    cout<< "newstring len: " << newstring.len() << endl;
+    newstring.display();
     */
-
 	return 0;
 }
 

@@ -242,12 +242,18 @@ void String::reserve(int newsize)
 The method display allows to print each char containing in the attribute word_.*/
 void String::display()
 {
-    int i=0;
-    while(i < capacity_)
-    {
-        std::cout <<"Char in position " << i << " : " << p_word_[i]<< std::endl;;
-        ++i;
+    if(capacity_<=1){
+        std::cout <<"Empty string" << std::endl;;
     }
+    else{
+        int i=0;
+        while(i < capacity_)
+        {
+            std::cout <<"Char in position " << i << " : " << p_word_[i]<< std::endl;;
+            ++i;
+        }
+    }
+    
 }
 
 // ####################################################################
@@ -438,5 +444,7 @@ String operator+(const String& lhs, const String& rhs)
 String::~String()
 {
 	// Add the delete [var] here when you make a new manual allocation in a function.
-    delete [] word_ ; 
+    if(capacity_>1){ // because else the pointer was never allocated
+        delete [] word_ ; 
+    }
 }
