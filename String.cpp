@@ -458,8 +458,7 @@ String operator+(const char* c ,const String& s2 )
         }
         
         res.reserve(newlength+1); // to allocate space to copy the word then
-        newword [len1 + len2 ] = '\0';
-
+       
         for(int i=0 ; i<newlength+1 ; i++){ // to copy the word
             res.word_[i]=newword[i];
         }

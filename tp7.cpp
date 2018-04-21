@@ -65,7 +65,7 @@ int main(){
 	/*------------------------
     * operator+(char *) test
     ------------------------*/
-    /*
+    
     //###################################### WORKS
     char Hello2[]="cou";
     String mystr2(Hello2);
@@ -82,7 +82,7 @@ int main(){
     s.display();
     cout << s.len()<<endl;
     cout << s.capacity()<<endl;
-    */
+    
     
     
     // Too long
