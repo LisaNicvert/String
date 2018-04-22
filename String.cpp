@@ -38,7 +38,7 @@ String::String(const char *c_string)
     // If the c_string exceed Max_LEN a warning message informs the user that this action is impossible.
     if ( i > MAX_LEN_)
     {
-        std::cout << "Sorry the max length is exceeded !" << std::endl;
+        std::cout << "ERROR : CANNOT BUILD STRING, MAXIMAL LENGTH " << MAX_LEN_ << " IS EXCEEDED." <<std::endl;
     }
     else
     {    
@@ -140,7 +140,7 @@ void String::resize(int newlength, const char& c )
     // Case n°3 : Impossible !
     else
     {
-        std::cout << "Sorry the max size is excedeed." <<std::endl;
+        std::cout << "ERROR : CANNOT BUILD STRING, MAXIMAL LENGTH " << MAX_LEN_ << " IS EXCEEDED." <<std::endl;
     }
 	
 	len_ = newlength  ;
@@ -150,7 +150,7 @@ void String::resize(int newlength, const char& c )
 
 bool String::empty(){
 	bool res;
-	if(len_<=1) // Pourquoi 1 et pas 0 ???????? 
+	if(len_<=0)
     {  
 		res=true;
 	}
@@ -212,7 +212,7 @@ void String::reserve(int newsize)
                 word_[i]=temp[i];
             }
         
-            word_[len_] = '\0'; // Attention j'ai changé cette ligne anciennement == word_[capacity]
+            word_[len_] = '\0';
     
             delete[] temp;
             capacity_=this->len()+1;
@@ -224,7 +224,7 @@ void String::reserve(int newsize)
     }
     else if(newsize >  MAX_LEN_)
     {
-        std::cout << "ERROR: RESULT OF CAPACITY " << newsize << " WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl; 
+        std::cout << "ERROR: RESULT OF CAPACITY " << newsize << " WOULD OVERSTEP MAXIMAL LEGAL LENGTH"<<std::endl; 
     }
 }
 
@@ -365,26 +365,20 @@ String operator+(const String& s1, const char* c )
         for (int i=0 ; i<len1 ; ++i) // We ommit the '\0'
         {   
             newword[i] = s1.word_[i];
-            //std::cout <<"first part newword     " <<newword[i] << "    pos   :"<< i<< std::endl;
         }
     
         for (int i=0 ; i<=len2 ; ++i)
         {	
             newword[i+len1] = s2.word_[i];
-            //std::cout <<"Second part     " <<newword[i + len1] << "    pos   :"<< i <<"    Second part Index    " <<i + len1 <<  std::endl;
         }
     
         res.reserve(newlength+1); // to allocate space to copy the word then
-        //res.display();
-        //std::cout<<"res cap : "<<res.capacity()<<std::endl;
     
         std::cout <<"copied:"<<std::endl;
         for(int i=0 ; i<newlength+1 ; i++){ // to copy the word
             res.word_[i]=newword[i];
-            //std::cout <<res.word_[i];
         }
         newword [len1 + len2 ] = '\0';
-        //std::cout<<std::endl;
     
         res.len_ = len1 + len2 ;
         res.capacity_ = len1 + len2 + 1;
@@ -393,16 +387,10 @@ String operator+(const String& s1, const char* c )
     }
     else if(!possible)
     {
-        std::cout << "ERROR: RESULT WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
-        /*char* temp = new char[0];
-        String res(temp);
-        delete[] temp;
-        return res;*/
+        std::cout << "ERROR: RESULT WOULD OVERSTEP MAXIMAL LEGAL LENGTH"<<std::endl;
+
     }
     return res;
-    //################################################
-    // Problème : on retourne une variable locale !!
-    //################################################
 }
 
 /* operator + (char*) : String + char*
@@ -468,22 +456,12 @@ String operator+(const char* c ,const String& s2 )
         res.capacity_ = len1 + len2 + 1;
                 
         delete[] newword;
-        
-        //################################################
-        // Memory leak !!
-        //################################################
     }
     else if(!possible)
     {
-        std::cout << "ERROR: RESULT WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
-        //################################################
-        // Memory leak !!
-        //################################################
+        std::cout << "ERROR: RESULT WOULD OVERSTEP MAXIMAL LEGAL LENGTH"<<std::endl;
     }
     return res;
-    //################################################
-    // Problème : on retourne une variable locale !!
-    //################################################
 }
 
 /* operator + (String) : String + String
@@ -537,12 +515,9 @@ String operator+(const String& lhs, const String& rhs)
     }
     else if(!possible)
     {
-        std::cout << "ERROR: RESULT OF LENGTH " << newlength << " WOULD OVERSTEPS MAXIMAL LEGAL LENGTH"<<std::endl;
+        std::cout << "ERROR: RESULT OF LENGTH " << newlength << " WOULD OVERSTEP MAXIMAL LEGAL LENGTH"<<std::endl;
     }
     return res;
-    //################################################
-    // Problème : on retourne une variable locale !!
-    //################################################
 }
 
 
@@ -551,8 +526,7 @@ String operator+(const String& lhs, const String& rhs)
 // ####################################################################
 String::~String()
 {
-	// Add the delete [var] here when you make a new manual allocation in a function.
-    //if(capacity_>1){ // because else the pointer was never allocated
+    if(word_[0] != '\0'){
         delete [] word_ ; 
-    //}
+    }
 }

@@ -32,7 +32,9 @@ class String{
 		Using this constructor, users may build a new string passing as 
         argument an array of chars.
 		Post-conditions : If the c_string's size exceeds the maximal 
-            length authorized, a warning message prevents this action.
+            length authorized, a warning message : 
+            "ERROR : CANNOT BUILD STRING, MAXIMAL LENGTH [MAX_LEN_] 
+            IS EXCEEDED." appears and the string is not built.
             Otherwize a literal string is built.
 		*/
 		String(const char word[]);
@@ -41,7 +43,7 @@ class String{
     	* Getters
    		 ------------------------*/
         /* Those three getters allow to acces to the private attributes.*/
-        int len();
+        int len(); // Preconditions : works only on unnaccentuated characters.
 		char* word();
         int capacity();
 
@@ -56,18 +58,21 @@ class String{
 
 		/* Display :
 		Displays the content of all the bytes allocated (up to capacity)
-        This method is suited for tests, to see if the capacity chosen by the user has been granted.
+        This method is suited for tests, to see if the capacity chosen 
+        by the user has been granted.
         Postconditions: if the string is empty, displays "Empty string" */
 		void display(); 
         
         /* Reserve:
         Allows the user to manually reserve storage space for the string.
-        Postconditions: if the size is greater than 100, a message is displayed : 
-            "ERROR: RESULT OF CAPACITY [user chosen capacity] WOULD OVERSTEPS MAXIMAL LEGAL LENGTH" 
+        Postconditions: if the size is greater than 100, a message is 
+            displayed : "ERROR: RESULT OF CAPACITY [user chosen 
+            capacity] WOULD OVERSTEP MAXIMAL LEGAL LENGTH" 
             and the capacity doesn't change.
-        if the capacity is the same, a message is displayed: "The size is already this one!" 
-            and the capacity doesn't change.
-        if the capacity is smaller than the current capacity (or negative), the capacity is reduced 
+        if the capacity is the same, a message is displayed: "The size 
+            is already this one!" and the capacity doesn't change.
+        if the capacity is smaller than the current capacity 
+            (or negative), the capacity is reduced 
             to be the exact capacity needed to contain the word. 
         else the capacity is adjusted to the one demanded. */
         void reserve(int newsize); 
@@ -84,7 +89,8 @@ class String{
             of the string.
             Otherwise the string is extended with the choosen char.
             If newlength > max_size, no action is possible a warning 
-            message : "Sorry the max size is excedeed." appears.*/
+            message : "ERROR : CANNOT BUILD STRING, MAXIMAL LENGTH 
+            [MAX_LEN_] IS EXCEEDED." appears.*/
 
 		void resize(int newlenght, const char& c= 0);
 		
@@ -111,7 +117,8 @@ class String{
         sets the word to the content of specified char* 
         and returns pointer on the string.
         Postconditions:  if the char c is too long, 
-            a message "ERROR: PARAMETER OVERSTEPS MAXIMAL LEGAL LENGTH" is displayed and the string doesn't change.
+            a message "ERROR: PARAMETER OVERSTEP MAXIMAL LEGAL LENGTH" 
+            is displayed and the string doesn't change.
         If the char c is shorter, capacity is resized. */
         String& operator=(const char* c); 
 
@@ -126,7 +133,7 @@ class String{
             and the new string resulting of concatenation. 
             If the resulting capacity exceeds the MAX_LEN_,
             a warning message : "ERROR: RESULT OF LENGTH 
-            [resulting length] WOULD OVERSTEPS MAXIMAL LEGAL LENGTH" 
+            [resulting length] WOULD OVERSTEP MAXIMAL LEGAL LENGTH" 
             is displayed and the string doesn't change.*/
 		friend String operator+(const String& s, const char* c );
 		/* operator + (char*) :  char* + string 
@@ -136,9 +143,12 @@ class String{
         
         /* operator + (string)
             allows to concatenate two strings.
-        Preconditions: the strings passed as parameters must be valid, ie shorter than 100.
-        Postconditions: if the resulting size is greater than 100, a message is displayed : 
-            "ERROR: RESULT OF LENGTH [resulting length] WOULD OVERSTEPS MAXIMAL LEGAL LENGTH" 
+        Preconditions: the strings passed as parameters must be valid,
+            ie shorter than 100.
+        Postconditions: if the resulting size is greater than 100, 
+            a message is displayed : 
+            "ERROR: RESULT OF LENGTH [resulting length] WOULD OVERSTEP
+            MAXIMAL LEGAL LENGTH" 
         and the capacity doesn't change. */		
         friend String operator+(const String& lhs, const String& rhs);
 

@@ -5,23 +5,30 @@ using namespace std;
 
 int main(){
 
-    // Ctor test
-	char Hello[]="Bonjour";
-	
-    /*------------------------
-    * Ctor test
-    ------------------------*/
     /*
+    char Hello[]="Bonjour";
     String mystr(Hello);
     */
     
+    /*------------------------
+    * Ctor test
+    ------------------------*/
+
     /*
+    // Len OK
 	cout << "Test de constructeur " <<endl;	
+    char Hello[]="Bonjour";
 	String mystr(Hello);
 	std::cout<< "length de Bonjour : "<<mystr.len() << std::endl;
 	std::cout<<"Mot en mémoire : " << mystr.word() << std::endl;
 	std::cout<< "Cpacité = mémoire allouée : "<<mystr.capacity() << std::endl;
     mystr.display();
+    */
+    
+    /*
+    // Too long
+    char toolong[]="htfghgrehrtgrfgdhgfeghfdsfghjytredsfghjgfdqssdfghgfdsqsdfghjytdfvcbghytrfdcvxbghftrdfscxvbgfrtfsdcxvfgtredsfgtredsfcgtredsf";
+    String longstring(toolong);
     */
     
     /*------------------------
@@ -66,7 +73,6 @@ int main(){
     * operator+(char *) test
     ------------------------*/
     
-    //###################################### WORKS
     /*
     char Hello2[]="cou";
     String mystr2(Hello2);
@@ -88,7 +94,6 @@ int main(){
     
     // Too long
     /*
-    //###################################### WORKS
     char c1[] = "cou";
 	String s1(c1);
 	char c2[] = "ABCsdfgfdsfghjgfdqghjkhgfdsqhjkljhgdfsqlkjhgfdsqjklhgfdsqSDFGHJKGFDSQsdfghjkhgfdsqsdfghjkgfdsqdfghjkgfdsqdfghjgfdsqdfghjkgfdsqDFGHJFDSQDFGHJKGFDSQFGHJKGFDSQFGH";
@@ -108,7 +113,6 @@ int main(){
     /*
     
     cout << "Test de l'opérateur (char *)+ String"<<endl;
-    //###################################### PB WITH DESTRUCTOR AND MEMORY LEAK
     char c1[] = "cou";
 	String s1(c1);
 	char c2[] = "ABC";
@@ -124,7 +128,6 @@ int main(){
     
     // Too long
     /*
-    //###################################### PB WITH DESTRUCTOR AND MEMORY LEAK
     char c1[] = "cou";
 	String s1(c1);
 	char c2[] = "ABCsdfgfdsfghjgfdqghjkhgfdsqhjkljhgdfsqlkjhgfdsqjklhgfdsqSDFGHJKGFDSQsdfghjkhgfdsqsdfghjkgfdsqdfghjkgfdsqdfghjgfdsqdfghjkgfdsqDFGHJFDSQDFGHJKGFDSQFGHJKGFDSQFGH";
@@ -153,6 +156,9 @@ int main(){
 	String emptystr(empty);
 	cout<< "emptystr is empty: " << emptystr.empty() << endl;
 	emptystr.display();
+    char uniq[]="a";
+    String almost_empty(uniq);
+    cout<< "almost_empty is empty: " << almost_empty.empty() << endl;
     */
     
 	/*------------------------
@@ -302,8 +308,7 @@ int main(){
     
     /*
     // If new word is too long
-    //###################################### WORKS
-    char secondChar[]="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaa";
+    char secondChar[]="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaa"; // len = 95
     String rhs(secondChar);
     String newstring=mystr+rhs;
     cout<< newstring.word() << endl;
@@ -311,7 +316,6 @@ int main(){
     
     /*
     // If newword is ok
-    //###################################### WORKS
     char secondChar[]=", ca va ?"; // problem il I use ç, it tells me rhs has length 10... (instead of 9)
     String rhs(secondChar);
     cout<< "rhs len: " << rhs.len() << endl;
@@ -324,7 +328,6 @@ int main(){
     
     /*
     // If newword is empty
-    //###################################### WORKS
     char secondChar[]="";
     String rhs(secondChar);
     cout<< "rhs len: " << rhs.len() << endl;
